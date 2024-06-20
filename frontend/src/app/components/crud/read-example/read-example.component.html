@@ -1,0 +1,62 @@
+<header class="bg-dark py-3">
+    <div class="container-lg d-flex">
+        <a role="button" class="text-white text-decoration-none fs-4" href="/crud-example-read">Expense Tracker</a>
+        <button class="btn btn-outline-light ms-auto" (click)="logout()" ><i class="fas fa-sign-out-alt"></i> Logout</button>
+    </div>
+</header>
+
+<div class="container p-5">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-4 mt-2">
+                    <button type="button" class="btn btn-info add-new" routerLink="/crud-example-create"><i class="fa fa-plus"></i> Add New</button>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered mt-2">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Descreption</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let expense of getDisplayedExpenses()">
+                    <td>{{expense.expenseType}}</td>
+                    <td>{{expense.description}}</td>
+                    <td>{{expense.amount}}</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-warning btn-sm" routerLink="/crud-example-update/{{expense.id}}">
+                            <i class="fa fa-pencil"></i>
+                        </button>                        
+                        <button type="button" class="btn btn-danger btn-sm mx-2" (click)="deleteExpenses(expense)">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <nav *ngIf="totalPages > 1" aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" *ngFor="let page of pages">
+                    <a class="page-link" (click)="changePage(page)">{{ page }}</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<footer class="bg-dark py-1 fixed-bottom">
+    <div class="container-lg d-flex justify-content-between align-items-center">
+        <p class="text-white mb-0">Copyright &copy; Expense Tracker. All rights reserved, 2023</p>
+        <div class="social-icons">
+            <a class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+            <a class="text-white me-3"><i class="fab fa-twitter-square"></i></a>
+            <a class="text-white"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</footer>

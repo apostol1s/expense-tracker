@@ -1,0 +1,35 @@
+<header class="bg-dark py-3">
+    <div class="container-lg">
+        <a role="button" class="text-white text-decoration-none fs-4" href="/login">Expense Tracker</a>
+    </div>
+</header>
+
+<div class="d-flex justify-content-center align-items-center " style="padding-top: 109px; padding-bottom: 109px;">
+    <div class="card p-4 shadow-lg" style="max-width: 400px; width: 100%;">
+        <h2 class="card-title text-center mb-4">Login</h2>
+        <form [formGroup]="form"  (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input formControlName="email" type="email" class="form-control" id="email" placeholder="Enter your email">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input formControlName="password" type="password" class="form-control" id="password" placeholder="Enter your password">
+            </div>
+            <button type="submit" class="btn btn-primary w-100" [disabled]="!form.valid">Login</button>
+            <p class="text-center mt-3 ">Don't have an account? <a role="button" routerLink="/registration">Create One</a></p>
+        </form>
+    </div>
+</div>
+
+<footer class="bg-dark py-1">
+    <div class="container-lg d-flex justify-content-between align-items-center">
+        <p class="text-white mb-0">Copyright &copy; Expense Tracker. All rights reserved, 2023</p>
+        <div class="social-icons">
+            <a class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+            <a class="text-white me-3"><i class="fab fa-twitter-square"></i></a>
+            <a class="text-white"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+</footer>
+<router-outlet></router-outlet>
