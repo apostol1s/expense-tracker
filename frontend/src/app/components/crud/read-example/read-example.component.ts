@@ -3,8 +3,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { Expense } from 'src/app/shared/interfaces/expense';
 import { ExpenseService } from 'src/app/shared/services/expense.service';
-import { CreateExampleComponent } from '../create-example/create-example.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/shared/services/user.service';
 
 
@@ -14,7 +14,7 @@ import { UserService } from 'src/app/shared/services/user.service';
   imports: [
     CommonModule,
     RouterLink,
-    CreateExampleComponent
+    MatSnackBarModule
   ],
   templateUrl: './read-example.component.html',
   styleUrl: './read-example.component.css'
@@ -73,11 +73,17 @@ export class ReadExampleComponent implements OnInit {
     this.expenseService.deleteExpense(expense.id).subscribe({
       next: () => {
         this.readExpenses();
-        this.snackBar.open('Expense Deleted', 'Close', {duration: 3000});
+        this.snackBar.open('Expense Deleted', 'Close', {
+          duration: 3000,
+          panelClass: ['custom-snackbar'],          
+        });
         console.log('Expense deleteded successfully', expense.expenseType, expense.description, expense.amount);        
       },
       error: (error) => {
-        this.snackBar.open('There is an error', 'Close', {duration: 3000});
+        this.snackBar.open('There is an error', 'Close', {
+          duration: 3000,
+          panelClass: ['custom-snackbar']
+        });
         console.error('Error deleting expense', error);
       }
     });

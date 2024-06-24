@@ -1,0 +1,7 @@
+.custom-snackbar {
+    z-index: 2000;
+}
+
+footer {
+    z-index: 1000;
+}
